@@ -13,6 +13,15 @@
     </head>
 
     <body>
+
+    <?php 
+    
+    include 'databaseConnection.php'; 
+    $dataCount = mysqli_query($connection, "select count(1) from project");
+    $count = mysqli_fetch_array($dataCount);
+    $dataFinish = mysqli_query($connection, "select count(1) from project where progressValue = '100'");
+    $finish = mysqli_fetch_array($dataFinish);
+    ?>
     
         <header>
             <div class="title container-fluid text-center">
@@ -27,11 +36,11 @@
                     <p>Add New Project</p>
                 </a>
                 <div class="col col-lg-1 item-info " style="background-color: var(--red)">
-                    <h2>5</h2>
+                    <h2><?php echo $count[0];?></h2>
                     <p>Projects</p>
                 </div>
                 <div class="col col-lg-1 item-info" style="background-color: var(--green)">
-                    <h2>2</h2>
+                    <h2><?php echo $finish[0];?></h2>
                     <p>Finish</p>
                 </div>
             </div>
@@ -48,7 +57,6 @@
                         <th>ACTION</th>
                     </tr>
                     <?php
-                        include 'databaseConnection.php';
                         $data = mysqli_query($connection, "select * from project");
                         while($d = mysqli_fetch_array($data)){
                     ?>
@@ -69,7 +77,7 @@
                         <td><?php echo $d['endDate'];?></td>
                         <td>
                             <div class="progress">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: <?php echo $d['progressValue'];?>%" aria-valuenow="<?php echo $d['progressValue'];?>" aria-valuemin="0" aria-valuemax="100"><?php echo $d['progressValue'];?>%</div>
+                                <div id="progressBar" class="progress-bar bg-info" role="progressbar" style="width: <?php echo $d['progressValue'];?>%" aria-valuenow="<?php echo $d['progressValue'];?>" aria-valuemin="0" aria-valuemax="100"><?php echo $d['progressValue'];?>%</div>
                             </div>
                         </td>
                         <td>

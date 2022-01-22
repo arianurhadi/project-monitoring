@@ -15,3 +15,11 @@ output.innerHTML = slider.value;
 slider.oninput = function() {
   output.innerHTML = this.value;
 }
+
+var progressBar = document.getElementById("progressBar");
+if (progressBar.ariaValueNow == 100 ) {
+  progressBar.classList.remove('bg-info');
+  progressBar.classList.add('bg-done');
+} else {
+  progressBar.classList.add('bg-info');
+}
