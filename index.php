@@ -73,8 +73,8 @@
                                 <?php echo $d['leaderEmail'];?>
                             </div>
                         </td>
-                        <td><?php echo $d['startDate'];?></td>
-                        <td><?php echo $d['endDate'];?></td>
+                        <td><?php echo date('d F Y',strtotime($d['startDate']));?></td>
+                        <td><?php echo date('d F Y',strtotime($d['endDate']));?></td>
                         <td>
                             <div class="progress">
                                 <div id="progressBar" class="progress-bar bg-info" role="progressbar" style="width: <?php echo $d['progressValue'];?>%" aria-valuenow="<?php echo $d['progressValue'];?>" aria-valuemin="0" aria-valuemax="100"><?php echo $d['progressValue'];?>%</div>
